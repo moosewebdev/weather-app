@@ -84,3 +84,16 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.weather-sun-rise,
+.weather-sun-set {
+
+    text-align:center;
+}
+
+.weather-sun-rise-icon,
+.weather-sun-set-icon {
+
+    padding-top:12px;
+    
+}

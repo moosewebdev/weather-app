@@ -6,7 +6,7 @@ window.addEventListener('load', function appStart(){
     var tempHighEle = document.querySelector('.weather-info-high');
     var curentTempEle = document.querySelector('.weather-info-temp');
     var sunUpEle = document.querySelector('.weather-sun-rise-text');
-    var sunDownEle = document.querySelector('weather-sun-set-text');
+    var sunDownEle = document.querySelector('.weather-sun-set-text');
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getLocal);
       } else {
@@ -44,10 +44,19 @@ window.addEventListener('load', function appStart(){
         tempHighEle.innerHTML = Math.round(wData.main.temp_max) + '&#8451';
         curentTempEle.innerHTML = Math.round(wData.main.temp) + '&#8451';
         
-        var date = new Date(wData.sys.sunrise);
-        console.log(date);
+        var sunUpdate = new Date(wData.sys.sunrise * 1000);
+        var sunDowndate = new Date(wData.sys.sunset * 1000);
+      
 
+        
+        sunUpEle.innerHTML = sunUpdate.getHours() + ":" + sunUpdate.getMinutes() + "AM";
 
+        if (sunDowndate.getMinutes() < 10 ){
+          sunDownEle.innerHTML = sunDowndate.getHours() + ":0" + sunDowndate.getMinutes() 
+        }
+        else{
+        sunDownEle.innerHTML = sunDowndate.getHours() + ":" + sunDowndate.getMinutes() + "PM";
+      }
         //sunUpEle
         //sunDownEle
       }
