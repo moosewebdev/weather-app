@@ -7,6 +7,8 @@ window.addEventListener('load', function appStart(){
     var curentTempEle = document.querySelector('.weather-info-temp');
     var sunUpEle = document.querySelector('.weather-sun-rise-text');
     var sunDownEle = document.querySelector('.weather-sun-set-text');
+    var weatherDesc = document.querySelector('.weather-info-text');
+    
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getLocal);
       } else {
@@ -16,6 +18,7 @@ window.addEventListener('load', function appStart(){
       function getLocal(position){
         const lat = position.coords.latitude;
         const long = position.coords.longitude;
+        
         getWeatherData(lat, long);
         console.log(lat + " " + long);
 
@@ -43,7 +46,7 @@ window.addEventListener('load', function appStart(){
         tempMinEle.innerHTML = Math.round(wData.main.temp_min) + '&#8451';
         tempHighEle.innerHTML = Math.round(wData.main.temp_max) + '&#8451';
         curentTempEle.innerHTML = Math.round(wData.main.temp) + '&#8451';
-        
+        weatherDesc.innerHTML = wData.weather[0].description;
         var sunUpdate = new Date(wData.sys.sunrise * 1000);
         var sunDowndate = new Date(wData.sys.sunset * 1000);
       
